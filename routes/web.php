@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,26 +14,22 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('/', function () {
     return view('guests.home');
 })->name('home');
 
 Auth::routes();
 
-// Route::get('/admin', 'AdminController@index')->name('admin');
-Route::resource('posts', 'Admin\PostController');
+// Route::get('/admin', 'HomeController@index')->name('admin');
+// Route::resource('posts', 'Admin\PostController');
 
-Route::get('/admin', 'Admin\AdminController@index')->name('dashboard');
-
-// Route::middleware('auth')
-// ->namespace('Admin')
-// ->name('admin.')
-// ->prefix('admin')
-// ->group(function () {
-//     Route::get('/', 'AdminController@dashboard')->name('dashboard');
-//     Route::resource('posts', 'PostController');
-// });
+Route::middleware('auth')
+   ->namespace('Admin')
+   ->name('admin.')
+   ->prefix('admin')
+   ->group(function () {
+        Route::get('/', 'AdminController@dashboard')->name('dashboard');
+        Route::resource('posts', 'PostController');
+        Route::get('users', 'UserController@index')->name('users.index');
+        Route::resource('categories', 'CategoryController');
+   });

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models; 
+namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -36,4 +36,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function userDetails() {
+        return $this->hasOne('App\Models\UserDetails'); // nella tabella che non ha il foreign key
+    }
+
+    public function posts() {
+        return $this->hasMany('App\Models\Post');
+    }
 }

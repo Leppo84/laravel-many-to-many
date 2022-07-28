@@ -21,12 +21,12 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
 
-                    {{-- @php
+                    @php
                         $details = $user->userDetails()->first()
                     @endphp
                     <td>{{ $details ? ($details->address ?: '-') : '-' }}</td>
                     <td>{{ $details ? ($details->phone ?: '-') : '-' }}</td>
-                    <td>{{ $details ? ($details->birth ?: '-') : '-' }}</td> --}}
+                    <td>{{ $details ? ($details->birth ?: '-') : '-' }}</td>
                 </tr>
             @endforeach
         </tbody>
